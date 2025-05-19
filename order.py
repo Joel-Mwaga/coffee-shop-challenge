@@ -1,24 +1,22 @@
+from customer import Customer
+from coffee import Coffee
+
 class Order:
     all = []
-
     def __init__(self, customer, coffee, price):
-        from customer import Customer
-        from coffee import Coffee
-
+        Order.all.append(self)
         if not isinstance(customer, Customer):
-            raise TypeError("customer must be a Customer")
+            raise TypeError("customer must be a Customer instance")
         if not isinstance(coffee, Coffee):
-            raise TypeError("coffee must be a Coffee")
+            raise TypeError("coffee must be a Coffee instance")
         if not isinstance(price, float):
             raise TypeError("price must be a float")
         if not (1.0 <= price <= 10.0):
-            raise ValueError("price must be between 1.0 and 10.0")
+            raise ValueError("price must be between 1.0 and 10.0 inclusive")
 
         self._customer = customer
         self._coffee = coffee
         self._price = price
-
-        Order.all.append(self)
 
     @property
     def customer(self):
