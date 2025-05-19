@@ -29,3 +29,17 @@ class Customer:
     def create_order(self, coffee, price):
         from order import Order
         return Order(self, coffee, price)
+   
+@classmethod
+def most_aficionado(cls, coffee):
+    from order import Order
+    customers = {}
+    for order in Order.all:
+        if order.coffee == coffee:
+            customers[order.customer] = customers.get(order.customer, 0) + order.price
+    if customers:
+        return max(customers, key=customers.get)
+    return None
+
+    
+

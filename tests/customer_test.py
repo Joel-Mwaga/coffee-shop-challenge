@@ -19,7 +19,7 @@ class TestCustomer(unittest.TestCase):
     def test_customer_name_validation(self):
         with self.assertRaises(Exception):
             Customer("")
-        with self.asserRaises(Exception):
+        with self.assertRaises(Exception):
             Customer("A" * 16)
         with self.assertRaises(Exception):
             Customer(123)
